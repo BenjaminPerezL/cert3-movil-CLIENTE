@@ -1,9 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 import '../constantes.dart';
 
 class FormularioEmail extends StatelessWidget {
-  const FormularioEmail({Key? key, required this.icon, required this.text, this.inputType, this.inputAction,}) : super(key: key);
+  TextEditingController emailCtrl;
+  FormularioEmail(this.emailCtrl,
+      {Key? key,
+      required this.icon,
+      required this.text,
+      this.inputType,
+      this.inputAction})
+      : super(key: key);
 
   final IconData icon;
   final String text;
@@ -25,18 +33,23 @@ class FormularioEmail extends StatelessWidget {
         child: Form(
           child: Column(
             children: [
-              TextFormField(decoration: InputDecoration(
-                border: InputBorder.none,
-                prefixIcon: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                  child: Icon(icon, size: 28,color: Color(kIcon),),
+              TextFormField(
+                decoration: InputDecoration(
+                  border: InputBorder.none,
+                  prefixIcon: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                    child: Icon(
+                      MdiIcons.email,
+                      size: 28,
+                      color: Color(kIcon),
+                    ),
+                  ),
+                  hintText: 'Email',
+                  hintStyle: kBodyText,
                 ),
-                hintText: text,
-                hintStyle: kBodyText,
-              ),
-              style: kBodyText,
-              keyboardType: inputType,
-              textInputAction: inputAction,
+                style: kBodyText,
+                keyboardType: TextInputType.emailAddress,
+                textInputAction: TextInputAction.next,
               ),
             ],
           ),

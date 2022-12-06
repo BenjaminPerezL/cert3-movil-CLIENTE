@@ -1,10 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 import '../constantes.dart';
 
-class FormularioPassword extends StatelessWidget {
-  const FormularioPassword({
-    Key? key, required this.icon, required this.text, this.inputType, this.inputAction,
+class FormularioPassword extends StatefulWidget {
+  TextEditingController passwordCtrl;
+
+  FormularioPassword(
+    this.passwordCtrl, {
+    Key? key,
+    required this.icon,
+    required this.text,
+    this.inputType,
+    this.inputAction,
   }) : super(key: key);
 
   final IconData icon;
@@ -12,6 +20,11 @@ class FormularioPassword extends StatelessWidget {
   final TextInputType? inputType;
   final TextInputAction? inputAction;
 
+  @override
+  State<FormularioPassword> createState() => _FormularioPasswordState();
+}
+
+class _FormularioPasswordState extends State<FormularioPassword> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -27,19 +40,25 @@ class FormularioPassword extends StatelessWidget {
         child: Form(
           child: Column(
             children: [
-              TextFormField(decoration: InputDecoration(
-                border: InputBorder.none,
-                prefixIcon: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                  child: Icon(icon, size: 28,color: Color(kIcon),),
+              TextFormField(
+                decoration: InputDecoration(
+                  border: InputBorder.none,
+                  prefixIcon: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                    child: Icon(
+                      MdiIcons.lockOutline,
+                      size: 28,
+                      color: Color(kIcon),
+                    ),
+                  ),
+                  hintText: 'Contraseña',
+                  hintStyle: kBodyText,
                 ),
-                hintText: text,
-                hintStyle: kBodyText,
-              ),
-              obscureText: true,
-              style: kBodyText,
-              keyboardType: inputType,
-              textInputAction: inputAction,
+                //controller: passwordCtrl,
+                obscureText: true,
+                style: kBodyText,
+                keyboardType: TextInputType.name,
+                textInputAction: TextInputAction.done,
               ),
             ],
           ),

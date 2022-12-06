@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "585054739969",
+    "project_id": "cert3-moviles",
+    "storage_bucket": "cert3-moviles.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:585054739969:android:e81fb11b55091fe1c76a00",
+        "android_client_info": {
+          "package_name": "com.example.proyecto_movil"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "585054739969-1akf22hv8qb2osn58njolkmvgvcmojfb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBrJbIuYndCrr506HEd0e_Jb7Dwvxzk8Vo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "585054739969-1akf22hv8qb2osn58njolkmvgvcmojfb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
