@@ -4,19 +4,20 @@ import 'package:material_design_icons_flutter/material_design_icons_flutter.dart
 import '../constantes.dart';
 
 class FormularioEmail extends StatelessWidget {
-  TextEditingController emailCtrl;
-  FormularioEmail(this.emailCtrl,
+  FormularioEmail(
       {Key? key,
-      required this.icon,
+      //required this.icon,
       required this.text,
       this.inputType,
-      this.inputAction})
+      this.inputAction,
+      required this.emailCtrl})
       : super(key: key);
 
-  final IconData icon;
+  //final IconData icon;
   final String text;
   final TextInputType? inputType;
   final TextInputAction? inputAction;
+  final TextEditingController emailCtrl;
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +25,7 @@ class FormularioEmail extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 10.0),
       child: Container(
-        height: size.height * 0.08,
+        height: size.height * 0.065,
         width: size.width * 0.8,
         decoration: BoxDecoration(
           color: Colors.grey[500]?.withOpacity(0.5),
@@ -47,6 +48,7 @@ class FormularioEmail extends StatelessWidget {
                   hintText: 'Email',
                   hintStyle: kBodyText,
                 ),
+                controller: emailCtrl,
                 style: kBodyText,
                 keyboardType: TextInputType.emailAddress,
                 textInputAction: TextInputAction.next,

@@ -2,14 +2,22 @@ import 'package:flutter/material.dart';
 
 const kBackgroundColor = 0xFF900859; //LISTO
 const kBackground = 0xFFB1AFFC;
-const kPrimaryColor = 0xFFff3366; 
+const kBackground2 = 0xFF8ba7b7;
+const kPrimaryColor = 0xFFff3366;
 const kIcon = 0xFF35bfee; //LISTO
 const kBoton = 0xFF95036a; //LISTO
-const kAccentColor3 = 0xFF00B6F0;
+const kColor1 = 0xFFceb7d7;
+const kTitulo1 = 0xFF8ba7b7;
+const kAppBar = 0XFF95036a;
 
 const TextStyle kBodyText =
     TextStyle(fontSize: 22, color: Colors.white, height: 1.5);
 
+const TextStyle kAppBarText = TextStyle(
+  color: Colors.black54,
+  fontSize: 25,
+  fontWeight: FontWeight.bold,
+);
 /*const TextStyle kTituloAppbar = TextStyle(
   color: Colors.black,
   fontWeight: FontWeight.bold,

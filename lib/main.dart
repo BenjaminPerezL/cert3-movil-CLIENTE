@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:proyecto_movil/auth.dart';
 //import 'package:proyecto_movil/pages/home.dart';
 import 'package:proyecto_movil/pages/login.dart';
 
@@ -30,7 +31,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.purple,
       ),
-      home: Login(),
+      home: AuthService().handleAuthState(),
     );
   }
 }

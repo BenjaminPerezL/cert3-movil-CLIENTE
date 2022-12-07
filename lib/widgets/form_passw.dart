@@ -3,35 +3,21 @@ import 'package:material_design_icons_flutter/material_design_icons_flutter.dart
 
 import '../constantes.dart';
 
-class FormularioPassword extends StatefulWidget {
-  TextEditingController passwordCtrl;
-
-  FormularioPassword(
-    this.passwordCtrl, {
+class FormularioPass extends StatelessWidget {
+  const FormularioPass({
     Key? key,
-    required this.icon,
-    required this.text,
-    this.inputType,
-    this.inputAction,
+    required this.passwordCtrl,
   }) : super(key: key);
 
-  final IconData icon;
-  final String text;
-  final TextInputType? inputType;
-  final TextInputAction? inputAction;
+  final TextEditingController passwordCtrl;
 
-  @override
-  State<FormularioPassword> createState() => _FormularioPasswordState();
-}
-
-class _FormularioPasswordState extends State<FormularioPassword> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 10.0),
       child: Container(
-        height: size.height * 0.08,
+        height: size.height * 0.07,
         width: size.width * 0.8,
         decoration: BoxDecoration(
           color: Colors.grey[500]?.withOpacity(0.5),
@@ -54,11 +40,11 @@ class _FormularioPasswordState extends State<FormularioPassword> {
                   hintText: 'Contraseña',
                   hintStyle: kBodyText,
                 ),
-                //controller: passwordCtrl,
+                controller: passwordCtrl,
                 obscureText: true,
                 style: kBodyText,
                 keyboardType: TextInputType.name,
-                textInputAction: TextInputAction.done,
+                //textInputAction: TextInputAction.done,
               ),
             ],
           ),

@@ -7,7 +7,10 @@ import 'package:shared_preferences/shared_preferences.dart';
 //import '../widgets/boton_iniciar.dart';
 //import '../widgets/form_email.dart';
 //import '../widgets/form_passw.dart';
+import '../widgets/form_email.dart';
+import '../widgets/form_passw.dart';
 import '../widgets/imagen_fondo.dart';
+import 'package:proyecto_movil/auth.dart';
 
 import '../constantes.dart';
 
@@ -64,83 +67,10 @@ class _LoginState extends State<Login> {
                     ),
 
                     //---------------INPUT EMAIL-------------------
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 10.0),
-                      child: Container(
-                        height: size.height * 0.08,
-                        width: size.width * 0.8,
-                        decoration: BoxDecoration(
-                          color: Colors.grey[500]?.withOpacity(0.5),
-                          borderRadius: BorderRadius.circular(16),
-                        ),
-                        child: Form(
-                          child: Column(
-                            children: [
-                              TextFormField(
-                                decoration: InputDecoration(
-                                  border: InputBorder.none,
-                                  prefixIcon: Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 20.0),
-                                    child: Icon(
-                                      MdiIcons.email,
-                                      size: 28,
-                                      color: Color(kIcon),
-                                    ),
-                                  ),
-                                  hintText: 'Email',
-                                  hintStyle: kBodyText,
-                                ),
-                                controller: emailCtrl,
-                                style: kBodyText,
-                                keyboardType: TextInputType.emailAddress,
-                                textInputAction: TextInputAction.next,
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
+                    FormularioEmail(text: 'Email', emailCtrl: emailCtrl),
 
                     //----------INPUT PASSWORD---------------
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 10.0),
-                      child: Container(
-                        height: size.height * 0.08,
-                        width: size.width * 0.8,
-                        decoration: BoxDecoration(
-                          color: Colors.grey[500]?.withOpacity(0.5),
-                          borderRadius: BorderRadius.circular(16),
-                        ),
-                        child: Form(
-                          child: Column(
-                            children: [
-                              TextFormField(
-                                decoration: InputDecoration(
-                                  border: InputBorder.none,
-                                  prefixIcon: Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 20.0),
-                                    child: Icon(
-                                      MdiIcons.lockOutline,
-                                      size: 28,
-                                      color: Color(kIcon),
-                                    ),
-                                  ),
-                                  hintText: 'Contraseña',
-                                  hintStyle: kBodyText,
-                                ),
-                                controller: passwordCtrl,
-                                obscureText: true,
-                                style: kBodyText,
-                                keyboardType: TextInputType.name,
-                                //textInputAction: TextInputAction.done,
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
+                    FormularioPass(passwordCtrl: passwordCtrl),
                     SizedBox(
                       height: 20,
                     ),
@@ -194,8 +124,11 @@ class _LoginState extends State<Login> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
+                    //---GOOGLE LOGIN
                     ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        AuthService().signInWithGoogle();
+                      },
                       style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.transparent),
                       child: Image.asset(
@@ -261,6 +194,12 @@ class _LoginState extends State<Login> {
     } on FirebaseAuthException catch (ex) {
       //CASO DE LOGIN NO VALIDO
       switch (ex.code) {
+        case 'unknown':
+          error = 'Correo no Ingresado';
+          break;
+        case 'invalid-email':
+          error = 'Correo invalido';
+          break;
         case 'user-not-found':
           error = 'Usuario no existe';
           break;
@@ -271,6 +210,7 @@ class _LoginState extends State<Login> {
           error = 'Cuenta desactivada';
           break;
         default:
+          //print(ex.code);
           error = ex.message.toString();
           break;
       }
