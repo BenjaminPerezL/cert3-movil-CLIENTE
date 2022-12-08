@@ -1,6 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:proyecto_movil/pages/admin/admin_home.dart';
+import 'package:proyecto_movil/pages/cliente/cliente_home.dart';
 import 'package:proyecto_movil/pages/home.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -10,7 +12,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../widgets/form_email.dart';
 import '../widgets/form_passw.dart';
 import '../widgets/imagen_fondo.dart';
-import 'package:proyecto_movil/auth.dart';
+import 'package:proyecto_movil/auth_google.dart';
 
 import '../constantes.dart';
 
@@ -127,6 +129,8 @@ class _LoginState extends State<Login> {
                     //---GOOGLE LOGIN
                     ElevatedButton(
                       onPressed: () {
+                        //AuthService().handleAuthState();
+                        AuthService().signOutGoogle();
                         AuthService().signInWithGoogle();
                       },
                       style: ElevatedButton.styleFrom(
@@ -187,9 +191,17 @@ class _LoginState extends State<Login> {
       sp.setString('userEmail', userCredential.user!.email.toString());
 
       //redirigir al home
-      MaterialPageRoute route = MaterialPageRoute(
-        builder: (context) => HomePage(),
-      );
+
+      MaterialPageRoute route =
+          MaterialPageRoute(builder: (context) => Cliente_Home());
+
+      if (userCredential.user!.email.toString() == 'admin@gmail.com') {
+        route = MaterialPageRoute(
+          builder: (context) => Admin_Home(),
+        );
+      }
+      ;
+
       Navigator.pushReplacement(context, route);
     } on FirebaseAuthException catch (ex) {
       //CASO DE LOGIN NO VALIDO

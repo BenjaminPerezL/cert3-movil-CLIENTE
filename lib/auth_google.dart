@@ -1,8 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:proyecto_movil/pages/admin_page.dart';
-import 'package:proyecto_movil/pages/cliente_page.dart';
+import 'package:proyecto_movil/pages/admin/admin_home.dart';
+import 'package:proyecto_movil/pages/cliente/cliente_home.dart';
 import 'package:proyecto_movil/pages/home.dart';
 import 'package:proyecto_movil/pages/login.dart';
 
@@ -47,8 +47,17 @@ class AuthService {
 
   //deslogearse
 
-  signOut() async {
-    await GoogleSignIn().signOut();
+  signOut(context) async {
     FirebaseAuth.instance.signOut();
+    await GoogleSignIn().signOut();
+
+    MaterialPageRoute route =
+        MaterialPageRoute(builder: ((context) => Login()));
+    Navigator.pushReplacement(context, route);
+  }
+
+  signOutGoogle() async {
+    FirebaseAuth.instance.signOut();
+    await GoogleSignIn().signOut();
   }
 }

@@ -4,7 +4,7 @@ import 'package:proyecto_movil/constantes.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-import 'package:proyecto_movil/auth.dart';
+import 'package:proyecto_movil/auth_google.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -26,7 +26,7 @@ class _HomePageState extends State<HomePage> {
               Text(FirebaseAuth.instance.currentUser!.email!),
               ElevatedButton(
                   onPressed: () {
-                    AuthService().signOut();
+                    AuthService().signOut(context);
                   },
                   child: Icon(MdiIcons.exitRun)),
             ],

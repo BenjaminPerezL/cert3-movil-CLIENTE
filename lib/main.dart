@@ -1,6 +1,9 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:proyecto_movil/auth.dart';
+import 'package:proyecto_movil/auth_google.dart';
+import 'package:proyecto_movil/pages/admin/admin_home.dart';
+import 'package:proyecto_movil/pages/admin/admin_listar_eventos.dart';
+import 'package:proyecto_movil/pages/cliente/cliente_home.dart';
 //import 'package:proyecto_movil/pages/home.dart';
 import 'package:proyecto_movil/pages/login.dart';
 
@@ -31,6 +34,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.purple,
       ),
+      //home: Admin_Home(),
       home: AuthService().handleAuthState(),
     );
   }
